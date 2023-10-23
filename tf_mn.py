@@ -1,5 +1,14 @@
 
 # https://medium.com/@abhig0303/setting-up-tensorflow-with-cuda-for-gpu-on-windows-11-a157db4dae3e
+# Python — — — — — — — — 3.8 (3.9 ok too)
+# Tensorflow — — — — — —2.5 (only 2.5 works)
+# Keras — — — — — — — — — 2.5
+# CUDA Toolkit — — — — — 11.8.0
+# cuDNN library — — — — — 8.6.0
+
+# conda create -n py39tf25 python=3.9; conda activate py39tf25
+# # only pip install works (not conda install)
+# pip install tensorflow==2.5
 
 import tensorflow as tf
 from tensorflow import keras

@@ -2,6 +2,7 @@
 #
 # https://pytorch.org/get-started/locally/#anaconda
 
+# conda create -n py39pt210; conda activate py39pt210
 # # all ok
 # conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 # pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118

@@ -35,7 +35,8 @@ class build_model(nn.Module):
 
 # Load data
 train_loader = torch.utils.data.DataLoader(
-        datasets.MNIST('C:/share/tmp/data', train=True, download=True, 
+        #datasets.MNIST('C:/share/tmp/data', train=True, download=True, 
+        datasets.MNIST('/tmp/data', train=True, download=True, 
                  transform=transforms.Compose([
                    transforms.ToTensor(), 
                    transforms.Normalize((0.1307,), (0.3081,))
@@ -54,9 +55,10 @@ print('***device', device)
 model = build_model().to(device)
 
 # check cuDNN
+if torch.cuda.is_available():
+  torch.backends.cudnn.deterministic = True
+  torch.backends.cudnn.benchmark = True
 print('**cuDNN', torch.backends.cudnn.enabled)
-torch.backends.cudnn.deterministic = True
-torch.backends.cudnn.benchmark = True
 print('**deterministic', torch.backends.cudnn.deterministic)
 print('**benchmark', torch.backends.cudnn.benchmark)
 
@@ -71,7 +73,8 @@ for epoch in range(2):
     _, (data, target) = next(enu_train_loader)
 
     # Move tensors to device
-    data, target = data.to(device), target.to(device)
+    if torch.cuda.is_available():
+      data, target = data.to(device), target.to(device)
 
     optimizer.zero_grad()
     output = model(data)
@@ -82,4 +85,5 @@ for epoch in range(2):
   print('Epoch:', epoch, ', Loss:', loss.item())
 
 # Save model
-torch.save(model.state_dict(), 'C:/share/tmp/pt_model.pt')
+#torch.save(model.state_dict(), 'C:/share/tmp/pt_model.pt')
+torch.save(model.state_dict(), '/tmp/pt_model.pt')

@@ -48,10 +48,16 @@ test_loader = torch.utils.data.DataLoader(
 image, label = next(iter(test_loader))
 image, label = image.to(device), label.to(device) 
 
+import time
+start = time.time()
 # Make prediction
 output = model(image)
-pred = output.argmax(dim=1, keepdim=True)
+end = time.time()
+print(end - start)
+print(device, str(torch.cuda.is_available()))
 
+# result
+pred = output.argmax(dim=1, keepdim=True)
 print('Predicted label: ', pred, label)
 for row_index, row in enumerate(output):
     for col_index, value in enumerate(row):

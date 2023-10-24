@@ -84,6 +84,8 @@ for epoch in range(2):
 
   print('Epoch:', epoch, ', Loss:', loss.item())
 
+# for consistence. move to cpu format
+model.cpu()
 # Save model
 #torch.save(model.state_dict(), 'C:/share/tmp/pt_model.pt')
 torch.save(model.state_dict(), '/tmp/pt_model.pt') # ok default to 'C:/tmp/pt_model.pt'

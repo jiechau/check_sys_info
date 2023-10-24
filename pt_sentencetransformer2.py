@@ -1,4 +1,4 @@
-
+size=100
 import torch
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print('***torch.cuda.is_available()', torch.cuda.is_available())
@@ -13,7 +13,7 @@ train_data = datasets.FashionMNIST(
 
 # Get a random sample of 10 images 
 import numpy as np    
-rnd_inds = np.random.randint(0, len(train_data), 10)
+rnd_inds = np.random.randint(0, len(train_data), size)
 # images = [np.array(train_data[i][0]) for i in rnd_inds] # 
 images = [train_data[i][0] for i in rnd_inds] # already <class 'PIL.Image.Image'>
 labels = [train_data[i][1] for i in rnd_inds]
@@ -38,7 +38,7 @@ model = SentenceTransformer('clip-ViT-B-32', device=device)
 import time
 start = time.time()
 #Encode image:
-img_emb = [model.encode(images[i]) for i in range(10)]
+img_emb = [model.encode(images[i]) for i in range(size)]
 #Compute cosine similarities 
 cos_scores = util.cos_sim(img_emb, img_emb)
 end = time.time()

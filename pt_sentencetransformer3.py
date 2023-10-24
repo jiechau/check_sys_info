@@ -38,15 +38,16 @@ model = SentenceTransformer('clip-ViT-B-32', device=device)
 import time
 start = time.time()
 
-
-similarity = util.paraphrase_mining(model, images)
-
-
+paraphrases = util.paraphrase_mining(model, images)
 
 end = time.time()
 
+# print(paraphrases)
+for paraphrase in paraphrases:
+    score, i, j = paraphrase
+    print("{} \t\t {} \t\t Score: {:.4f}".format(i, j, score))
 
-print(similarity)
+
 print(labels)
 print('***torch.cuda.is_available()', torch.cuda.is_available())
 print('***device', device)

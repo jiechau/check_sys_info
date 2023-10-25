@@ -46,7 +46,7 @@ train_loader = torch.utils.data.DataLoader(
 print('train_loader', len(train_loader))
 
 # Initialize model and optimizer
-model = build_model()
+#model = build_model()
 
 # Device configuration
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -62,17 +62,18 @@ print('**cuDNN', torch.backends.cudnn.enabled)
 print('**deterministic', torch.backends.cudnn.deterministic)
 print('**benchmark', torch.backends.cudnn.benchmark)
 
-
+'''
 from thop import profile
 from thop import clever_format
 # Define dummy input with the same shape as your actual input
-dummy_input = torch.randn(1, 1, 28, 28)  # Adjust the shape as per your input size
+dummy_input = torch.randn(1, 1, 28, 28, device=device)  # Adjust the shape as per your input size
 # Use thop to profile the model
 macs, params = profile(model, inputs=(dummy_input,))
 flops = clever_format(macs, "%.3f")
 print(f"FLOPS: {flops}")
 import sys
 sys.exit()
+'''
 
 # training
 
@@ -85,6 +86,14 @@ def train_step(_model, _data, _target):
   _loss.backward()
   optimizer.step()
   return _loss
+
+
+
+# Measure time
+iterations = 100
+starter, ender = torch.cuda.Event(enable_timing=True), torch.cuda.Event(enable_timing=True)
+starter.record()
+
 
 import time
 start = time.time()
@@ -107,6 +116,26 @@ for epoch in range(2):
 
 end = time.time()
 print(end - start)
+
+
+ender.record()
+torch.cuda.synchronize()
+elapsed_time = starter.elapsed_time(ender) / 1000
+print(elapsed_time)
+
+
+from thop import profile
+from thop import clever_format
+# Define dummy input with the same shape as your actual input
+dummy_input = torch.randn(1, 1, 28, 28, device=device)  # Adjust the shape as per your input size
+# Use thop to profile the model
+#macs, params = profile(model, inputs=(dummy_input,))
+macs, params = profile(model, inputs=(data,))
+flops = clever_format(macs, "%.3f")
+print(f"FLOPS: {flops}")
+print(f"Average FLOPs/s: {macs / elapsed_time * 2 / 1e9:.3f} G")
+import sys
+sys.exit()
 
 
 # for consistence. move to cpu format

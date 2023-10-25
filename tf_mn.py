@@ -59,7 +59,7 @@ model.compile(optimizer='adam',
 
 
 #callbacks = [tf.keras.callbacks.ModelCheckpoint('C:/share/tmp/my_model_mn', save_freq='epoch')]
-callbacks = [tf.keras.callbacks.ModelCheckpoint('/share/tmp/my_model_mn', save_freq='epoch')]
+callbacks = [tf.keras.callbacks.ModelCheckpoint('/tmp/my_model_tf', save_freq='epoch')]
 
 # experimental_distribute_dataset
 #dist_dataset = strategy.experimental_distribute_dataset(multi_worker_dataset) 
@@ -76,4 +76,4 @@ print('global_batch_size', global_batch_size)
 
 # this way, every worker save model
 # but not a good practice
-model.save('/share/tmp/my_model_mn')
+model.save('/tmp/my_model_tf')

@@ -58,8 +58,8 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 
-callbacks = [tf.keras.callbacks.ModelCheckpoint('C:/tmp/my_model_tf', save_freq='epoch')]
-#callbacks = [tf.keras.callbacks.ModelCheckpoint('/tmp/my_model_tf', save_freq='epoch')]
+#callbacks = [tf.keras.callbacks.ModelCheckpoint('C:/tmp/my_model_tf', save_freq='epoch')]
+callbacks = [tf.keras.callbacks.ModelCheckpoint('/tmp/my_model_tf', save_freq='epoch')]
 
 # experimental_distribute_dataset
 #dist_dataset = strategy.experimental_distribute_dataset(multi_worker_dataset) 
@@ -67,8 +67,8 @@ callbacks = [tf.keras.callbacks.ModelCheckpoint('C:/tmp/my_model_tf', save_freq=
 import time
 start = time.time()
 #model.fit(x_train, y_train, epochs=2, batch_size=64) # default batch_size=32
-#model.fit(multi_worker_dataset, epochs=1, steps_per_epoch=int(60000/global_batch_size))
-model.fit(multi_worker_dataset, epochs=2, steps_per_epoch=int(60000/global_batch_size), callbacks=callbacks)
+model.fit(multi_worker_dataset, epochs=2, steps_per_epoch=int(60000/global_batch_size))
+#model.fit(multi_worker_dataset, epochs=2, steps_per_epoch=int(60000/global_batch_size), callbacks=callbacks)
 #model.fit(dist_dataset, epochs=10, steps_per_epoch=int(60000/global_batch_size), callbacks=callbacks)
 end = time.time()
 print(end - start)
@@ -81,5 +81,4 @@ print('global_batch_size', global_batch_size)
 
 # this way, every worker save model
 # but not a good practice
-model.save('C:/tmp/my_model_tf')
 #model.save('/tmp/my_model_tf')

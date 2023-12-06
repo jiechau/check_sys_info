@@ -7,7 +7,7 @@ import tensorflow as tf
 from tensorflow import keras
 
 # load model
-model = keras.models.load_model('/share/tmp/my_model_tf') 
+model = keras.models.load_model('/tmp/my_model_tf') 
 
 # random pick one
 import numpy as np

@@ -5,16 +5,38 @@ git clone https://gitlab.com/jiechau/check_sys_info.git
 
 ##
 
-## for tensorflow:
+## tensorflow:
 # use venv tf39 tf39cpu to switch gpu/cpu
 python tf_mn.py
 python tf_mni.py (just inference. need to unmark last line of pt_mn.py)
 
-## for torch
+## torch
 pt_mn.py
 pt_mni.py (just inference. need to unmark last line of pt_mn.py)
 pt_mn_cpu.py
 pt_mni_cpu.py (just inference. need to unmark last line of pt_mn_cpu.py)
+
+## docker
+使用 CPU 的 tensorflow
+docker run -it --rm tensorflow/tensorflow:latest bash
+使用 GPU 的 tensorflow
+docker run -it --rm --gpus all tensorflow/tensorflow:latest-gpu bash
+#
+nvidia-smi
+apt update; apt install git
+git clone https://gitlab.com/jiechau/check_sys_info.git
+cd check_sys_info
+python tf_mn.py
+
+## docker
+下載 torch 映像檔
+nvidia-smi
+docker run -it --rm --gpus all nvcr.io/nvidia/pytorch:23.10-py3
+git clone https://gitlab.com/jiechau/check_sys_info.git
+cd check_sys_info
+python pt_mn.py
+
+
 
 
 
@@ -44,4 +66,22 @@ Graphics Card: NVIDIA GPU RTX-3060
 # conda create -n py39tf25 python=3.9; conda activate py39tf25
 # # only pip install works (not conda install)
 # pip install tensorflow==2.5
+
+go_conda.bat
+%windir%\System32\cmd.exe "/K" C:\ProgramData\anaconda3\Scripts\activate.bat C:\ProgramData\anaconda3
+
+cdj.bat
+cd C:\share\jiechau\ai_codes
+
+conda env list
+conda activate py39tf25
+conda activate py39tf25cpu
+conda activate py39pt210pip
+conda activate py39pt210conda
+conda activate py39pt210cpu
+
+
+
+
+
 

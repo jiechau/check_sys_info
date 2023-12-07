@@ -29,7 +29,7 @@ model = build_model()
 model.load_state_dict(torch.load('/tmp/pt_model.pt'))
 
 # Device configuration
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cpu')
 print('***device', device)
 model = model.to(device)
 model.eval()

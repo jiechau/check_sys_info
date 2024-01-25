@@ -48,10 +48,10 @@ python tf_mn.py # every epoch is less than 5 sec
 
 ## docker
 下載 torch 映像檔
-nvidia-smi
 docker run -it --rm --gpus all nvcr.io/nvidia/pytorch:23.10-py3 bash
 # inside container bash, run these:
 git clone https://gitlab.com/jiechau/check_sys_info.git
+nvidia-smi
 cd check_sys_info
 python pt_mn.py
 python pt_mn_cpu.py

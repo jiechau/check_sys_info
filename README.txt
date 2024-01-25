@@ -35,25 +35,25 @@ pt_mn_cpu.py
 pt_mni_cpu.py (just inference. need to unmark last line of pt_mn_cpu.py)
 
 ## docker
-使用 CPU 的 tensorflow
-docker run -it --rm tensorflow/tensorflow:latest bash
-使用 GPU 的 tensorflow
+# tensorflow / GPU
 docker run -it --rm --gpus all tensorflow/tensorflow:latest-gpu bash
+# tensorflow / CPU
+docker run -it --rm tensorflow/tensorflow:latest bash # "Ubuntu 22.04.3 LTS (Jammy Jellyfish)"
 # inside container bash, run these:
 nvidia-smi
 apt update; apt install git
 git clone https://gitlab.com/jiechau/check_sys_info.git
 cd check_sys_info
-python tf_mn.py # every epoch is less than 5 sec
+python tf_mn.py # every epoch should be less than 5 sec
 
 ## docker
-下載 torch 映像檔
+# pytorch / gpu or cpu
 docker run -it --rm --gpus all nvcr.io/nvidia/pytorch:23.10-py3 bash
 # inside container bash, run these:
 git clone https://gitlab.com/jiechau/check_sys_info.git
 nvidia-smi
 cd check_sys_info
-python pt_mn.py
+python pt_mn.py # every epoch should be less than 10 sec
 python pt_mn_cpu.py
 
 
@@ -65,6 +65,8 @@ https://ivonblog.com/posts/ubuntu-install-nvidia-drivers/
   apt install nvidia-driver-545
   GeForce GTX 1060 3GB
   VGA compatible controller: NVIDIA Corporation GP106 [GeForce GTX 1060 3GB] (rev a1)
+  GeForce RTX 3060 12G
+  VGA compatible controller: NVIDIA Corporation GA106 [GeForce RTX 3060 Lite Hash Rate] (rev a1)
 
 ## nvidia driver on ROG Flow X16 (2022) GV601 GV601RM-0042E6900HS
 ## RTX 3060
@@ -91,7 +93,7 @@ go_conda.bat
 %windir%\System32\cmd.exe "/K" C:\ProgramData\anaconda3\Scripts\activate.bat C:\ProgramData\anaconda3
 
 cdj.bat
-cd C:\share\jiechau\ai_codes
+cd C:\share\jiechau\ml_codes
 
 conda env list
 conda activate py39tf25
@@ -99,6 +101,7 @@ conda activate py39tf25cpu
 conda activate py39pt210pip
 conda activate py39pt210conda
 conda activate py39pt210cpu
+conda activate ttt
 
 
 

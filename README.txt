@@ -1,9 +1,27 @@
 # check_sys_info
 
-venv: py39 pt311 tf39 tf39cpu pt39 pt311
+venv: py39 tf39 tf39cpu pt39 pt311
 git clone https://gitlab.com/jiechau/check_sys_info.git
 
-##
+## venv
+# tf39
+/usr/local/bin/python3.9 -m venv --system-site-packages tf39
+source tf39/bin/activate
+pip install -r requirements.tf39.pip.txt
+# tf39cpu
+/usr/local/bin/python3.9 -m venv --system-site-packages tf39cpu
+source tf39cpu/bin/activate
+pip install -r requirements.tf39cpu.pip.txt
+# pt39 (used in: gpu or cpu)
+/usr/local/bin/python3.9 -m venv --system-site-packages pt39
+source pt39/bin/activate
+pip install -r requirements.pt39.pip.txt
+# pt311 (used in: gpu or cpu)
+/usr/local/bin/python3.11 -m venv --system-site-packages pt311
+source pt311/bin/activate
+pip install -r requirements.pt311.pip.txt
+
+
 
 ## tensorflow:
 # use venv tf39 tf39cpu to switch gpu/cpu
@@ -21,32 +39,34 @@ pt_mni_cpu.py (just inference. need to unmark last line of pt_mn_cpu.py)
 docker run -it --rm tensorflow/tensorflow:latest bash
 使用 GPU 的 tensorflow
 docker run -it --rm --gpus all tensorflow/tensorflow:latest-gpu bash
-#
+# inside container bash, run these:
 nvidia-smi
 apt update; apt install git
 git clone https://gitlab.com/jiechau/check_sys_info.git
 cd check_sys_info
-python tf_mn.py
+python tf_mn.py # every epoch is less than 5 sec
 
 ## docker
 下載 torch 映像檔
 nvidia-smi
-docker run -it --rm --gpus all nvcr.io/nvidia/pytorch:23.10-py3
+docker run -it --rm --gpus all nvcr.io/nvidia/pytorch:23.10-py3 bash
+# inside container bash, run these:
 git clone https://gitlab.com/jiechau/check_sys_info.git
 cd check_sys_info
 python pt_mn.py
+python pt_mn_cpu.py
 
 
 
-
+P.S.
 
 ## nvidia driver on ubuntu 22.04
-https://ivonblog.com/posts/ubuntu-install-nvidia-drivers/bigdata
+https://ivonblog.com/posts/ubuntu-install-nvidia-drivers/
   apt install nvidia-driver-545
   GeForce GTX 1060 3GB
   VGA compatible controller: NVIDIA Corporation GP106 [GeForce GTX 1060 3GB] (rev a1)
 
-
+## nvidia driver on ROG Flow X16 (2022) GV601 GV601RM-0042E6900HS
 ## RTX 3060
 https://medium.com/@abhig0303/setting-up-tensorflow-with-cuda-for-gpu-on-windows-11-a157db4dae3e
 ROG Flow X16 (2022) GV601 GV601RM-0042E6900HS

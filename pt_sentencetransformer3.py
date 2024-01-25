@@ -1,8 +1,15 @@
-size=100
+#
+# python pt_sentencetransformer3.py 
+# python pt_sentencetransformer3.py cpu
+#
+DATASET_NUM = 1_000
+import sys
 import torch
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print('***torch.cuda.is_available()', torch.cuda.is_available())
-print('***device', device)
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+if len(sys.argv) == 2 and sys.argv[1] == 'cpu':
+    device = 'cpu'
+print('use device', device)
 
 from torchvision import datasets
 train_data = datasets.FashionMNIST(
@@ -13,7 +20,7 @@ train_data = datasets.FashionMNIST(
 
 # Get a random sample of 10 images 
 import numpy as np    
-rnd_inds = np.random.randint(0, len(train_data), size)
+rnd_inds = np.random.randint(0, len(train_data), DATASET_NUM)
 # images = [np.array(train_data[i][0]) for i in rnd_inds] # 
 images = [train_data[i][0] for i in rnd_inds] # already <class 'PIL.Image.Image'>
 labels = [train_data[i][1] for i in rnd_inds]
@@ -37,22 +44,17 @@ model = SentenceTransformer('clip-ViT-B-32', device=device)
 
 import time
 start = time.time()
-
 paraphrases = util.paraphrase_mining(model, images)
-
 end = time.time()
 
 # print(paraphrases)
 for paraphrase in paraphrases:
     score, i, j = paraphrase
     print("{} \t\t {} \t\t Score: {:.4f}".format(i, j, score))
-
-
 print(labels)
-print('***torch.cuda.is_available()', torch.cuda.is_available())
-print('***device', device)
-print('time: ', end - start)
 
+print(end - start, 'sec')
+print(device)
 
 
 

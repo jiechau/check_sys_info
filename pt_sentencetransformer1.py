@@ -1,8 +1,15 @@
-
+#
+# python pt_sentencetransformer1.py 
+# python pt_sentencetransformer1.py cpu
+#
+DATASET_NUM = 10_000
+import sys
 import torch
-device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 print('***torch.cuda.is_available()', torch.cuda.is_available())
-print('***device', device)
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+if len(sys.argv) == 2 and sys.argv[1] == 'cpu':
+    device = 'cpu'
+print('use device', device)
 
 from sentence_transformers import SentenceTransformer
 model = SentenceTransformer('all-MiniLM-L6-v2', device=device)
@@ -10,7 +17,7 @@ model = SentenceTransformer('all-MiniLM-L6-v2', device=device)
 
 #Our sentences we like to encode
 s = 'This framework generates embeddings for each input sentence'
-sentences = [s for i in range(10_000)]
+sentences = [s for i in range(DATASET_NUM)]
 print(len(sentences))
 
 import time
@@ -19,8 +26,8 @@ start = time.time()
 embeddings = model.encode(sentences)
 #
 end = time.time()
-print(end - start)
-print(device, str(torch.cuda.is_available()))
+print(end - start, 'sec')
+print(device)
 
 
 #Print the embeddings

@@ -63,9 +63,9 @@ P.S.
 ## nvidia driver on ubuntu 22.04
 https://ivonblog.com/posts/ubuntu-install-nvidia-drivers/
   apt install nvidia-driver-545
-  GeForce GTX 1060 3GB
+  GeForce GTX 1060 3GB (2016)
   VGA compatible controller: NVIDIA Corporation GP106 [GeForce GTX 1060 3GB] (rev a1)
-  GeForce RTX 3060 12G
+  GeForce RTX 3060 12G (2021)
   VGA compatible controller: NVIDIA Corporation GA106 [GeForce RTX 3060 Lite Hash Rate] (rev a1)
 
 ## nvidia driver on ROG Flow X16 (2022) GV601 GV601RM-0042E6900HS

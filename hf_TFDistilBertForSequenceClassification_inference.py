@@ -39,23 +39,6 @@ os.environ["tmp_dir"] = tmp_dir
 os.makedirs(tmp_dir, exist_ok=True)
 
 
-# start
-dir_save_data = dir_all_data + '/friDay_data'
-dir_saved_model = dir_all_model + '/_saved_model_friDay'
-import pandas as pd
-# df_all
-pickle_location = dir_save_data + '/df_items_content_details_cate_20231213.pkl'
-df_all = pd.read_pickle(pickle_location)
-print('done', str(len(df_all)))
-# df_all
-pickle_location = dir_save_data + '/catg_content_20231213.pkl'
-df_catg = pd.read_pickle(pickle_location)
-# df_new
-pickle_location = dir_save_data + '/df_items_content_details_cate_20240124.pkl'
-df_latest = pd.read_pickle(pickle_location)
-df_new = df_latest[~df_latest['pid'].isin(df_all['pid'])] # pid new
-df_new = df_new[df_new['cate_id'].isin(df_catg['cate_id'])] # use old df_catg
-
 
 def get_model_tokenizer(_pretrained_model_name, _model_path, _num_classes, _is_first_time_create_model):
     if _pretrained_model_name == 'bert-base-chinese':
@@ -121,8 +104,7 @@ lt_model_save_h5_dir = {}
 for pretrained_model_name in lt_pretrained_model_name:
     save_model_dir_name = lt_save_model_dir_name[pretrained_model_name]
     # load model
-    model_save_h5_dir = dir_all_model + '/_saved_model_friDay/friDay_category_id' + '/' + save_model_dir_name # don't end '.h5'
-    model_save_h5_dir = model_save_h5_dir + save_model_suffix # don't end '.h5'
+    model_save_h5_dir = dir_all_model + '/' + save_model_dir_name + save_model_suffix # don't end '.h5'
     lt_model_save_h5_dir['pretrained_model_name'] = model_save_h5_dir
     model, tokenizer = get_model_tokenizer(pretrained_model_name, model_save_h5_dir, num_classes, is_first_time_create_model)
     lt_model[pretrained_model_name] = model
@@ -148,11 +130,12 @@ def predict_classification(_model, _tokenizer, _input_sentence):
     return _predictions
 
 # inference
-sentence = 'msi微星 PRO DP180 13-032TW RTX3060 桌上型電腦(32G特仕版)'
-print(sentence)
+sentence = 'this is sentence B'
+
 
 for pretrained_model_name in lt_pretrained_model_name:
     print('')
+    print(sentence)
     print(pretrained_model_name)
     model = lt_model[pretrained_model_name]
     tokenizer = lt_tokenizer[pretrained_model_name]

@@ -23,16 +23,43 @@ pip install -r requirements.pt311.pip.txt
 
 
 
-## tensorflow:
+## tensorflow
 # use venv tf39 tf39cpu to switch gpu/cpu
 python tf_mn.py
 python tf_mni.py (just inference. need to unmark last line of pt_mn.py)
 
 ## torch
+# use venv pt39 
 pt_mn.py
 pt_mni.py (just inference. need to unmark last line of pt_mn.py)
 pt_mn_cpu.py
 pt_mni_cpu.py (just inference. need to unmark last line of pt_mn_cpu.py)
+
+
+## sentencetransformer
+# pt_sentencetransformer.requirements.cuda.pip.txt
+# pt_sentencetransformer.requirements.cpu.pip.txt
+/usr/local/bin/python3.9 -m venv --system-site-packages sss
+source sss/bin/activate
+pip install --upgrade pip
+pip install -r pt_sentencetransformer.requirements.cuda.pip.txt
+# or cpu version: pip install -r pt_sentencetransformer.requirements.cpu.pip.txt
+python pt_sentencetransformer1.py
+python pt_sentencetransformer2.py
+python pt_sentencetransformer3.py
+
+## hugging face TFDistilBertForSequenceClassification
+# use venv hf39tf 
+/usr/local/bin/python3.9 -m venv --system-site-packages hf39tf
+source hf39tf/bin/activate
+pip install --upgrade pip
+pip install -r requirements.hf39tf.pip.txt
+python hf_TFDistilBertForSequenceClassification.py
+python hf_TFDistilBertForSequenceClassification_inference.py
+
+## hugging face llama2 NousResearch
+requirements.ppp.pip.txt
+
 
 ## docker
 # tensorflow / GPU

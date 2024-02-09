@@ -21,9 +21,9 @@ save_model_dir_name = 'distilbert-base-multilingual-cased'
 save_model_suffix = '-tf-keras'
 
 import os
-colab_dir = '/tmp/Colab_Notebooks'
-HF_HOME = '/tmp/transformers'
-tmp_dir = '/tmp' # save tmp
+colab_dir = '/tmp/tmp/Colab_Notebooks'
+HF_HOME = '/tmp/tmp/transformers'
+tmp_dir = '/tmp/tmp' # save tmp
 
 # colab_dir
 os.environ["colab_dir"] = colab_dir

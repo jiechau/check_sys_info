@@ -13,7 +13,7 @@ print('use device', device)
 
 from torchvision import datasets
 train_data = datasets.FashionMNIST(
-    root='/tmp/data', 
+    root='/tmp/tmp/data', 
     train=True,
     download=True
 )

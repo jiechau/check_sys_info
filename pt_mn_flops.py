@@ -36,7 +36,7 @@ class build_model(nn.Module):
 # Load data
 train_loader = torch.utils.data.DataLoader(
         #datasets.MNIST('C:/share/tmp/data', train=True, download=True, 
-        datasets.MNIST('/tmp/data', train=True, download=True, # ok default to 'C:/tmp/data'
+        datasets.MNIST('/tmp/tmp/data', train=True, download=True, # ok default to 'C:/tmp/data'
                  transform=transforms.Compose([
                    transforms.ToTensor(), 
                    transforms.Normalize((0.1307,), (0.3081,))
@@ -142,4 +142,4 @@ sys.exit()
 model.cpu()
 # Save model
 #torch.save(model.state_dict(), 'C:/share/tmp/pt_model.pt')
-torch.save(model.state_dict(), '/tmp/pt_model.pt') # ok default to 'C:/tmp/pt_model.pt'
+torch.save(model.state_dict(), '/tmp/tmp/pt_model.pt') # ok default to 'C:/tmp/pt_model.pt'

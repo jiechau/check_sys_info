@@ -26,7 +26,7 @@ class build_model(nn.Module):
 
 # Load model 
 model = build_model()
-model.load_state_dict(torch.load('/tmp/pt_model.pt'))
+model.load_state_dict(torch.load('/tmp/tmp/pt_model.pt'))
 
 # Device configuration
 device = torch.device('cpu')
@@ -37,7 +37,7 @@ model.eval()
 
 # Load one random test image
 test_loader = torch.utils.data.DataLoader(
-  torchvision.datasets.MNIST('/tmp/data', train=False, download=True,
+  torchvision.datasets.MNIST('/tmp/tmp/data', train=False, download=True,
   transform=torchvision.transforms.Compose([
      torchvision.transforms.ToTensor(),
      torchvision.transforms.Normalize(

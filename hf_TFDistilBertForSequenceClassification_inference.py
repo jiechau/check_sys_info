@@ -16,9 +16,9 @@ lt_save_model_dir_name = {
 }
 save_model_suffix = '-tf-keras'
 
-colab_dir = '/tmp/Colab_Notebooks'
-HF_HOME = '/tmp/transformers'
-tmp_dir = '/tmp' # save tmp
+colab_dir = '/tmp/tmp/Colab_Notebooks'
+HF_HOME = '/tmp/tmp/transformers'
+tmp_dir = '/tmp/tmp' # save tmp
 
 # all
 

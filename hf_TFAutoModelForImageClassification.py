@@ -258,7 +258,7 @@ if is_save_hf_to_local:
     image_processor_save.save_pretrained(checkpoint_hf)
 
 # load model
-model_save_h5_dir = dir_all_model + '/_saved_model_friDay/friDay_category_id/' + saved_model_name
+model_save_h5_dir = dir_all_model + '/' + saved_model_name
 if not os.path.exists(model_save_h5_dir):
     is_first_time_create_model = True
 
@@ -379,7 +379,7 @@ for iii in range(LOOP_NUM):
     history = model.fit(tf_train_dataset, validation_data=tf_eval_dataset, epochs=EPOCHS, callbacks=[metric_callback])
     #model_name = "google/vit-base-patch16-224-in21k"
     #saved_model_name = "google-vit-base-patch16-224-in21k-tf-keras"
-    model_save_h5_dir = dir_all_model + '/_saved_model_friDay/friDay_category_id/' + saved_model_name
+    model_save_h5_dir = dir_all_model + '/' + saved_model_name
     os.makedirs(model_save_h5_dir, exist_ok=True)
     # save
     image_processor.save_pretrained(model_save_h5_dir)

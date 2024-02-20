@@ -110,7 +110,7 @@ id2label = sorted_dict
 #saved_model_name = "google-vit-base-patch16-224-in21k-tf-keras"
 
 # load model
-model_save_h5_dir = dir_all_model + '/_saved_model_friDay/friDay_category_id/' + saved_model_name
+model_save_h5_dir = dir_all_model + '/' + saved_model_name
 if not os.path.exists(model_save_h5_dir):
     is_first_time_create_model = True
 

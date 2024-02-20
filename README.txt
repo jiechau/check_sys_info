@@ -72,7 +72,10 @@ python hf_TFAutoModelForImageClassification_inference.py
 source ppp/bin/activate
 pip install --upgrade pip
 pip install -r requirements.ppp.pip.txt
-
+# split to 3 part, in case of lack of resource (ram/vram)
+hf_llama2_NousResearch.py # train
+hf_llama2_NousResearch_merge.py # merge after train. save to custom model
+hf_llama2_NousResearch_inference.py # use custom model to do inference
 
 
 ## docker

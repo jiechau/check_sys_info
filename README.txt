@@ -57,8 +57,22 @@ pip install -r requirements.hf39tf.pip.txt
 python hf_TFDistilBertForSequenceClassification.py
 python hf_TFDistilBertForSequenceClassification_inference.py
 
+## hugging face TFAutoModelForImageClassification
+# use venv hf39tf 
+/usr/local/bin/python3.9 -m venv --system-site-packages hf39tf
+source hf39tf/bin/activate
+pip install --upgrade pip
+pip install -r requirements.hf39tf.pip.txt
+python hf_TFAutoModelForImageClassification.py
+python hf_TFAutoModelForImageClassification_inference.py
+
 ## hugging face llama2 NousResearch
-requirements.ppp.pip.txt
+# use venv ppp 
+/usr/local/bin/python3.9 -m venv --system-site-packages ppp
+source ppp/bin/activate
+pip install --upgrade pip
+pip install -r requirements.ppp.pip.txt
+
 
 
 ## docker

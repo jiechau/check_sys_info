@@ -66,6 +66,15 @@ pip install -r requirements.hf39tf.pip.txt
 python hf_TFAutoModelForImageClassification.py
 python hf_TFAutoModelForImageClassification_inference.py
 
+## hugging face AutoModelForImageClassification
+# use venv hf39pt
+/usr/local/bin/python3.9 -m venv --system-site-packages hf39pt
+source hf39pt/bin/activate
+pip install --upgrade pip
+pip install -r requirements.hf39pt.pip.txt
+python hf_AutoModelForImageClassification.py
+python hf_AutoModelForImageClassification_inference.py
+
 ## hugging face llama2 NousResearch
 # use venv ppp 
 /usr/local/bin/python3.9 -m venv --system-site-packages ppp

@@ -13,7 +13,7 @@ is_rog = False # that C:/ problem， and gram problem
 
 # vars
 LOOP_NUM = 1
-EPOCHS = 10 # 2
+EPOCHS = 2 # 2
 DATASET_NUM = 100
 TRAIN_SET_RATIO = 0.9
 TEST_size = 0.1
@@ -253,6 +253,7 @@ def load_image_as_byte_array(image_path):
     return img_byte_arr
 
 aa = msg_time()
+df_all = df_all[:DATASET_NUM].copy()
 df_all['image'] = df_all.apply(lambda r: load_image_as_byte_array(r.img_location), axis=1)
 df_all = df_all[['image','label']].copy()
 print(msg_time(), 'done prepare df:', len(df_all))

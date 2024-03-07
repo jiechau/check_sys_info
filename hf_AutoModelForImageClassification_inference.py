@@ -170,34 +170,8 @@ def msg_time():
 
 
 
-# dummy label
-# df_label is all we need
-import sys
-import pandas as pd
-import numpy as np
-import random
-import string
-df_label = pd.DataFrame({
-    'id_num': range(1, 101),  # Integer from 1 to 100
-    'level_txt': [''.join(random.choices(string.ascii_lowercase, k=random.randint(3, 9))) for _ in range(100)]  # Corresponding random words
-})
-# make label/id
-label2id, id2label = dict(), dict()
-for index, row in df_label.iterrows():
-    label2id[row['level_txt']] = str(row['id_num'])
-    id2label[str(row['id_num'])] = row['level_txt']
-label2id['default'] = '0'
-id2label['0'] = 'default'
-sorted_dict = dict(sorted(label2id.items(), key=lambda item: int(item[1])))
-label2id = sorted_dict
-sorted_dict = dict(sorted(id2label.items(), key=lambda item: int(item[0])))
-id2label = sorted_dict
 
-
-
-
-
-# 這裡 load pretrained
+# load pretrained
 
 #model_name = "microsoft/swin-base-patch4-window7-224-in22k" # pre-trained model from which to fine-tune
 #saved_model_suffix = "-pt-trainer"
@@ -240,27 +214,18 @@ else:
 print(checkpoint)
 
 
-
+aa = '''
 # Preprocess
 from transformers import AutoImageProcessor
 image_processor = AutoImageProcessor.from_pretrained(checkpoint)
-
 from transformers import AutoModelForImageClassification, AutoImageProcessor
 model = AutoModelForImageClassification.from_pretrained(checkpoint)
-aa = '''
-model = AutoModelForImageClassification.from_pretrained(
-    checkpoint,
-    id2label=id2label,
-    label2id=label2id,
-    ignore_mismatched_sizes=True,
-)
 '''
 
 
-
 # inference
-product_image_url = 'https://down-tw.img.susercontent.com/file/tw-11134207-7r98u-lqa8oegrci5443'
-product_image_url = 'https://i2.momoshop.com.tw/1703149251/goodsimg/0011/660/056/11660056_B.webp'
+product_image_url = 'https://aaa.com/aaa.jpg'
+product_image_url = 'https://aaa.com/aaa.webp'
 
 # 1
 # classifier
@@ -268,7 +233,7 @@ from transformers import pipeline
 classifier = pipeline("image-classification", model=model_save_h5_dir)
 result_list = classifier(product_image_url)
 print(result_list[0])
-
+print('--' * 20)
 
 # 2
 # logits = model(**inputs).logits
@@ -281,8 +246,6 @@ import urllib
 import numpy as np
 from PIL import Image
 import io
-product_image_url = 'https://i2.momoshop.com.tw/1703149251/goodsimg/0011/660/056/11660056_B.webp'
-
 with urllib.request.urlopen(product_image_url) as url:
     product_image_data = url.read()
     predict_img_arr = np.array(Image.open(io.BytesIO(product_image_data)))

@@ -40,3 +40,11 @@ urllib3==2.1.0
 Werkzeug==3.0.1
 wrapt==1.14.1
 zipp==3.17.0
+joblib==1.4.2
+pandas==2.2.2
+python-dateutil==2.9.0.post0
+pytz==2024.1
+scikit-learn==1.5.0
+scipy==1.13.1
+threadpoolctl==3.5.0
+tzdata==2024.1

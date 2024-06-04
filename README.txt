@@ -22,13 +22,21 @@ source pt311/bin/activate
 pip install -r requirements.pt311.pip.txt
 
 
+## tensorflow regression
+# use venv tf39 tf39cpu to switch gpu/cpu
+python tf_dnn.py
 
-## tensorflow
+## torch regression
+# use venv pt39 
+pt_dnn.py
+
+
+## tensorflow image classification
 # use venv tf39 tf39cpu to switch gpu/cpu
 python tf_mn.py
 python tf_mni.py (just inference. need to unmark last line of pt_mn.py)
 
-## torch
+## torch image classification
 # use venv pt39 
 pt_mn.py
 pt_mni.py (just inference. need to unmark last line of pt_mn.py)

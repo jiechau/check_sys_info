@@ -56,6 +56,30 @@ python pt_sentencetransformer1.py
 python pt_sentencetransformer2.py
 python pt_sentencetransformer3.py
 
+
+## spacy
+# requirements.py39spacy.pip.txt
+/usr/local/bin/python3.9 -m venv --system-site-packages py39spacy
+source py39spacy/bin/activate
+pip install --upgrade pip
+pip install spacy
+pip install spacy[transformers]
+pip install cupy-cuda12x # if GPU, see nvidia-smi or nvcc --version
+python -m spacy download zh_core_web_trf
+python -m spacy info
+# inference
+python -W ignore spacy_inference.py
+# train data
+python spacy_data.py
+# https://spacy.io/usage/training#config
+# zh, ner, and save to base_config.cfg
+python -m spacy init fill-config ./base_config.cfg ./config.cfg
+python -m spacy train config.cfg --output ./output --paths.train ./train.spacy --paths.dev ./dev.spacy --gpu-id 0 # --training.max_epochs 10
+# inference
+python -W ignore spacy_inference_new.py
+
+
+
 ## hugging face TFDistilBertForSequenceClassification
 # use venv hf39tf 
 /usr/local/bin/python3.9 -m venv --system-site-packages hf39tf

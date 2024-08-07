@@ -118,6 +118,18 @@ hf_llama2_NousResearch.py # train
 hf_llama2_NousResearch_merge.py # merge after train. save to custom model
 hf_llama2_NousResearch_inference.py # use custom model to do inference
 
+## microsoft graphRAG
+# this one is just note, in 2024/07 openai launch gpt-4o-mini which is very 'cheap' to make things possible
+everything follow the tutorial: https://microsoft.github.io/graphrag/posts/get_started/
+activate your openai 'Organization account' (not monthly user subscription) by deposit $10 https://platform.openai.com/settings/organization/billing/overview
+create api key https://platform.openai.com/organization/api-keys
+create a virtual env, e.g. py312graphrag
+you'll need access to openai's chat and embeddings api
+edit ragtest/.env put api key
+edit ragtest/settings.yaml # model: gpt-4o-mini
+get txt file Alice's Adventures in Wonderland https://manybooks.net/titles/carrolll2888528885-8.html
+calculate token https://platform.openai.com/tokenizer
+
 
 ## docker
 # tensorflow / GPU

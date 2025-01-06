@@ -133,6 +133,8 @@ calculate token https://platform.openai.com/tokenizer
 # example
 check_sys_info/graphrag_book/ragtest_az/settings.yaml
 check_sys_info/graphrag_book/ragtest_openai/settings.yaml
+# read
+check_sys_info/graphrag_book/README.txt
 
 
 ## docker

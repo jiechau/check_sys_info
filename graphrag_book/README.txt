@@ -10,5 +10,6 @@ vi ragtest_ch/.env
 vi ragtest_ch/settings.yaml # model: gpt-4o-mini
 python -m graphrag.index --root ./ragtest_ch
 python -m graphrag.query --root ./ragtest_ch --method global "這本書的主旨是什麼?"
+python -m graphrag.query --root ~/ragtest_en --method global "what is main idea of this book?"
 
 

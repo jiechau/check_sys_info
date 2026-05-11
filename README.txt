@@ -1,9 +1,17 @@
 # check_sys_info
+# some ai template
 
-venv: py39 tf39 tf39cpu pt39 pt311
 git clone https://gitlab.com/jiechau/check_sys_info.git
 
+## uv
+
+## BAAI's BGE-M3 
+# with FlagEmbedding (its dev tool)
+# inline uv (no need pyproject.toml uv.lock)
+uv run bge_m3.py
+
 ## venv
+## venv: py39 tf39 tf39cpu pt39 pt311
 # tf39
 /usr/local/bin/python3.9 -m venv --system-site-packages tf39
 source tf39/bin/activate
